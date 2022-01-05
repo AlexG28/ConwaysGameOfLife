@@ -111,10 +111,16 @@ if __name__ == '__main__':
 
                     #print(f"x: {x}        y: {y}")
 
-                    ARR[x][y] = 1
-
                     rect = pygame.Rect(x * 20, y * 20, 19, 19)
-                    pygame.draw.rect(screen, [200, 200, 200], rect)
+                    if ARR[x][y] == 1:
+                        ARR[x][y] = 0
+                        pygame.draw.rect(screen, [0,0,0], rect)
+                    else :
+                        ARR[x][y] = 1
+                        pygame.draw.rect(screen, [200, 200, 200], rect)
+                    
+                    #ARR[x][y] = 1
+
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:                   

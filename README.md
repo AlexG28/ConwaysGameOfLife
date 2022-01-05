@@ -4,7 +4,11 @@
 1. pygame
 
 ## Controls: 
-- Left click on square to add cell 
-- Currently no way to delete cell 
-- Press space to start algorithm
-- Press backspace to end algorithm 
+- Left click on an black square to add cell 
+- Left click on a cell to remove it
+- Press space to start the algorithm
+- Press backspace to end the algorithm 
+
+## Example
+
+![picture of algorithm] (./pics/1.png)
