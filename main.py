@@ -11,6 +11,8 @@ WINDOW_WIDTH = 500
 
 ARR = []
 
+last = pygame.time.get_ticks()
+
 for i in range(25):
     ARR.append([0] * 25)
 
@@ -26,14 +28,15 @@ def drawGridLines():
     pygame.display.update()
 
 def drawGrid(grid):
-
+     
     for i in range(25):
         for j in range(25):
-            rect = pygame.Rect(x * 20, y * 20, 19, 19)
+            rect = pygame.Rect(i * 20, j * 20, 19, 19)
             if grid[i] [j] == 1:
                 pygame.draw.rect(screen, [200, 200, 200], rect)
             else:
                 pygame.draw.rect(screen, [0,0,0], rect)
+   
 
     pygame.display.update()
 
@@ -50,17 +53,14 @@ def nextGeneration(grid):
                 if grid[i + x] [j + y] == 1:
                     counter += 1
 
-
         if grid[i] [j] == 1:
             counter -= 1
-            print(f"cell ({i},{j}) has a neighbour count of {counter}")
 
         return counter 
     
     for i in range(1,24):
         for j in range(1,24):           
-            if i == 2 and j == 1:
-                print("here")
+            
             nOfNeighbour = countNeighbours(i, j)
             
             if grid[i][j] == 1 and (nOfNeighbour == 3 or nOfNeighbour == 2):
@@ -90,6 +90,16 @@ if __name__ == '__main__':
     while running:
         drawGridLines()
         
+        if gameOfLife:
+            
+            now = pygame.time.get_ticks()
+            
+            if now - last >= 500:
+                ARR = nextGeneration(ARR)
+                drawGrid(ARR)
+                last = now
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -102,9 +112,9 @@ if __name__ == '__main__':
                     x = int(position[0] / 20)
                     y = int(position[1] / 20)
 
-                    print(f"x: {x}        y: {y}")
+                    #print(f"x: {x}        y: {y}")
 
-                    ARR[x][y] = 1 # incorrect
+                    ARR[x][y] = 1
 
                     rect = pygame.Rect(x * 20, y * 20, 19, 19)
                     pygame.draw.rect(screen, [200, 200, 200], rect)
@@ -112,10 +122,8 @@ if __name__ == '__main__':
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:                   
                     print("start algorithm")
-                    ARR = nextGeneration(ARR)
-                    drawGrid(ARR)
-
                     gameOfLife = True
+
                 if event.key == pygame.K_BACKSPACE:
                     print("backspace, end game")
                     gameOfLife = False
