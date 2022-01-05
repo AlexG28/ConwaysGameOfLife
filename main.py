@@ -1,7 +1,4 @@
 import pygame
-from pygame import surface
-from pygame.constants import WINDOWSIZECHANGED
-from pygame.cursors import arrow
 
 BLACK = [0, 0, 0]
 WHITE = [255, 255, 255]
