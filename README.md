@@ -1,9 +1,9 @@
-## Conway's game of life in python
+# Conway's game of life in python
 
-# Dependencies: 
+## Dependencies: 
 1. pygame
 
-# Controls: 
+## Controls: 
 - Left click on square to add cell 
 - Currently no way to delete cell 
 - Press space to start algorithm
